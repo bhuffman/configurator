@@ -1,32 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {compose, values, mapObjIndexed, repeat, flatten, zip, keys, map, length, head, last} from 'ramda';
-import { withRouter } from 'react-router';
-import injectSheet from 'react-jss';
+import {compose, values, mapObjIndexed, repeat, flatten, zip, keys, map, length, head, last, unnest} from 'ramda';
 import actionCreators from 'globalActions';
-import ConfiguMaker from 'components/ConfiguMaker';
-
-const styles = (vars) => ({
-  ConfigRoot:{
-
-  }
-});
+import Composer from 'components/Composer';
 
 class ConfigRoot extends Component {
-  componentWillMount() {
-    // this.props.initBootup();
-  }
-
   render() {
     let {classes, configJson} = this.props;
 
-    const kids = values(mapObjIndexed((node, index) => {
-      return (<ConfiguMaker opts={node} key={index}/>)
-    }, configJson.tree))
-
     return (
-      <div className={classes.ConfigRoot}>
-        {kids}
+      <div style={{height: '100vh'}}>
+        <Composer opts={head(values(configJson.tree))} key={head(keys(configJson.tree))} />
       </div>
     );
   }
@@ -40,6 +24,5 @@ function mapStateToProps(state, props) {
 
 export default compose(
   connect(mapStateToProps,actionCreators),
-  injectSheet(styles)
 )(ConfigRoot);
 

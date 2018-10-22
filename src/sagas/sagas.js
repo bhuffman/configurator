@@ -1,17 +1,37 @@
 import {put, all, call, takeEvery, select} from 'redux-saga/effects';
-import * as R from 'ramda';
+import {compose} from 'ramda';
 import * as C from 'konstants';
 
-const trace = R.curry((msg, requests) => {
-  console.log(msg, requests);
-  return requests;
-});
+function *addNode(action) {
+  const oldTree = yield select((state) => state.configJson.tree);
 
-function *testSaga(action) {
-
+  yield put({...action, type: C.ADD_TREE_NODE_TO_STATE});
+  yield put({history: oldTree, type: C.APPEND_HISTORY});
 }
 
-export function *watchTestSaga() {
-  yield takeEvery(C.FETCH_CONFIG, testSaga);
+export function *watchAddNode() {
+  yield takeEvery(C.ADD_TREE_NODE, addNode);
+}
+
+function *replaceNode(action) {
+  const oldTree = yield select((state) => state.configJson.tree);
+
+  yield put({...action, type: C.REPLACE_TREE_NODE_TO_STATE});
+  yield put({history: oldTree, type: C.APPEND_HISTORY});
+}
+
+export function *watchReplaceNode() {
+  yield takeEvery(C.REPLACE_TREE_NODE, replaceNode);
+}
+
+function *deleteNode(action) {
+  const oldTree = yield select((state) => state.configJson.tree);
+
+  yield put({...action, type: C.DELETE_TREE_NODE_TO_STATE});
+  yield put({history: oldTree, type: C.APPEND_HISTORY});
+}
+
+export function *watchDeleteNode() {
+  yield takeEvery(C.DELETE_TREE_NODE, deleteNode);
 }
 

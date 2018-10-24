@@ -1,18 +1,19 @@
 export default {
   configJson: {
     globalId: 1000,
+    subModuleId: 1,
     tree: {
       1:{
         type: 'FlexColumn',
         children: {
-          2: {type: 'Test', sort: 3},
+          2: {type: 'Paper', sort: 3},
           3: {type: 'DividerWrapper', sort: 2},
         }
       }
     },
-    history: [
-
-    ]
+    subModules: {
+    },
+    history: []
   },
   editor: {
     customProps: {
@@ -32,6 +33,7 @@ export default {
       ShoppingCartIcon: {stub: true},
       SimpleChart: {chartType: 'Line'},
       SimpleTabs: { slots: ['tabOne','tabTwo', 'tabThree']},
+      FlexLayout1: { slots: ['leftSidebar','rightSidebar', 'mainContent', 'nav', 'footer']},
       Test: {custom: 'Jimmy', open: 'false', stub: true},
       TileGrid: {custom: 'Jimmy'},
       Typography: {stub: true},

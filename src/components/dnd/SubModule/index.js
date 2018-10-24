@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { compose } from 'ramda';
 import actionCreators from 'globalActions';
-import DndDropTarget from 'components/dnd/DndDropTarget';
+import DndDragSource from 'components/dnd/DndDragSource';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -12,31 +12,19 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 
 const styles = theme => ({
-  FullChild: {
+  SubModule: {
     display: 'flex',
     width: '100%',
     padding: '10px',
     'padding-top': '12px',
     height: '100%'
   },
-  label: {
-    position: 'absolute',
-    height: '12px',
-    'font-size': '10px',
-    'margin-top': '-14px',
-    'margin-left': '-2px',
-    opacity: '.65',
-    cursor: 'crosshair',
-    '&:hover': {
-      color: 'red'
-    },
-  },
   button: {
     width: '100%'
   }
 });
 
-class FullChild extends Component {
+class SubModule extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -65,48 +53,41 @@ class FullChild extends Component {
     e.stopPropagation()
     this.setState({open: false})
     
-    this.props.makeSubmodule({path: this.props.parentchain, comp: this.props.opts.type})
+    this.props.makeSubmodule({path: this.props.parentchain})
   }
 
   render() {
     const {classes, children, style, preview} = this.props;
 
-    let newChildren = React.Children.map(children, child =>
-      React.cloneElement(child, {data: this.props.data})
-    );
-
     if(preview){
       return (
         <React.Fragment>
-          {newChildren}
+          {this.props.children}
         </React.Fragment>
       );
     }else{
       return (
-        <div className={classes.FullChild} style={style}>
-          <DndDropTarget parentchain={this.props.parentchain} replace>
-            <div className={classes.label} onClick={this._handleOpen}>
-              {this.props.opts.type}
-              <Dialog onBackdropClick={this._handleClose} aria-labelledby="simple-dialog-title" open={this.state.open}>
-                <DialogTitle id="simple-dialog-title">{this.props.opts.type} Options</DialogTitle>
-                <DialogContent>
-                  <List>
-                    <ListItem >
-                      <Button onClick={this._handleDelete} variant="outlined" className={classes.button}>
-                        Delete
-                      </Button>
-                    </ListItem>
-                    <ListItem >
-                      <Button onClick={this._handleMakeSubmodule} variant="outlined" className={classes.button}>
-                        Make Submodule
-                      </Button>
-                    </ListItem>
-                  </List>
-                </DialogContent>
-              </Dialog>
-            </div>
-            {newChildren}
-          </DndDropTarget>
+        <div className={classes.SubModule} style={style}>
+          <div className={classes.label} onClick={this._handleOpen}>
+            <Dialog onBackdropClick={this._handleClose} aria-labelledby="simple-dialog-title" open={this.state.open}>
+              <DialogTitle id="simple-dialog-title">{this.props.comp.type} Options</DialogTitle>
+              <DialogContent>
+                <List>
+                  <ListItem >
+                    <Button onClick={this._handleDelete} variant="outlined" className={classes.button}>
+                      Delete
+                    </Button>
+                  </ListItem>
+                  <ListItem >
+                    <Button onClick={this._handleMakeSubmodule} variant="outlined" className={classes.button}>
+                      Make Submodule
+                    </Button>
+                  </ListItem>
+                </List>
+              </DialogContent>
+            </Dialog>
+          </div>
+          {this.props.comp.name}
         </div>
       );
     }
@@ -122,4 +103,4 @@ function mapStateToProps(state) {
 export default compose(
   connect(mapStateToProps, actionCreators),
   withStyles(styles)
-)(FullChild);
+)(SubModule);

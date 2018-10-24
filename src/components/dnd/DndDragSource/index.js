@@ -14,7 +14,8 @@ const cardSource = {
   beginDrag(props, monitor, component) {
     return { 
       comp: props.comp,
-      parentkey: props.parentkey
+      parentkey: props.parentkey,
+      submodule: props.submodule,
      };
   },
 };

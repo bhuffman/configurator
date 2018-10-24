@@ -6,8 +6,9 @@ import { withStyles } from '@material-ui/core/styles';
 import actionCreators from "globalActions";
 import ComposerDnd from "components/ComposerDnd";
 import PermDrawer from "components/layout/PermDrawer";
-import FlexColumn from "components/layout/FlexColumn";
 import DndDragSource from "components/dnd/DndDragSource";
+import SubModule from "components/dnd/SubModule";
+import JsonPreview from "components/dnd/JsonPreview";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
@@ -51,15 +52,16 @@ class ConfigRootDnd extends Component {
   }
   
   componentWillUnmount() {
+    // Remove so we don't remount the listener and double fire events
     document.removeEventListener("keydown", this._handleKeyDown);
   }
 
   _handleKeyDown = (event) => {
     switch( event.keyCode ) {
-        case 27:
+        case 27: //Escape Key
             this.props.rewindHistory()
             break;
-        case 17:
+        case 17: // Ctrl Key
             this.props.togglePreview()
             break;
         default: 
@@ -68,7 +70,7 @@ class ConfigRootDnd extends Component {
   }
 
   render() {
-    let { classes, configJson, features, layouts, data } = this.props;
+    let { classes, configJson, features, layouts, data , subModules, preview} = this.props;
 
     const featureList =
       !isNil(features) &&
@@ -121,20 +123,47 @@ class ConfigRootDnd extends Component {
         }, data)
       );
         
+    const SubModuleList =
+      !isNil(subModules) && !this.props.preview &&
+      values(
+        map(subModule => {
+          return (
+            <React.Fragment key={subModule}>
+              <DndDragSource comp={subModule} submodule>
+                <SubModule comp={subModule}>
+                  <ListItem>
+                    <div>{subModule}</div>
+                  </ListItem>
+                  <Divider />
+                </SubModule>
+              </DndDragSource>
+            </React.Fragment>
+          );
+        }, subModules)
+      );
+        
 
     return (
       <div style={{ height: "100vh" }}>
         <div className={classes.toggle}>
           <Link to='/'>X</Link>
         </div>
-        <PermDrawer>
+        <PermDrawer preview={preview}>
           <div key="drawerContent">
+            <ExpansionPanel>
+              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography>Data</Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails style={{ padding: 0 }}>
+                <List style={{ padding: 0 }}><Divider />{dataList}</List>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
             <ExpansionPanel>
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography>Layout</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails style={{ padding: 0 }}>
-                <List style={{ padding: 0 }}>{layoutList}</List>
+                <List style={{ padding: 0 }}><Divider />{layoutList}</List>
               </ExpansionPanelDetails>
             </ExpansionPanel>
             <ExpansionPanel>
@@ -142,20 +171,21 @@ class ConfigRootDnd extends Component {
                 <Typography>Features</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails style={{ padding: 0 }}>
-                <List style={{ padding: 0 }}>{featureList}</List>
+                <List style={{ padding: 0 }}><Divider />{featureList}</List>
               </ExpansionPanelDetails>
             </ExpansionPanel>
             <ExpansionPanel>
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography>Data</Typography>
+                <Typography>Sub Modules</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails style={{ padding: 0 }}>
-                <List style={{ padding: 0 }}>{dataList}</List>
+                <List style={{ padding: 0 }}><Divider />{SubModuleList}</List>
               </ExpansionPanelDetails>
             </ExpansionPanel>
           </div>
           <ComposerDnd key='mainContent' opts={head(values(configJson.tree))} parentchain={['tree']} parentkey={head(keys(configJson.tree))}/>
         </PermDrawer>
+        <JsonPreview />
       </div>
     );
   }
@@ -164,9 +194,11 @@ class ConfigRootDnd extends Component {
 function mapStateToProps(state, props) {
   return {
     configJson: state.configJson,
+    preview: state.editor.preview,
     data: path(["editor", "keys", "data"], state),
     features: path(["editor", "keys", "features"], state),
     layouts: path(["editor", "keys", "layout"], state),
+    subModules: path(["configJson", "subModules"], state),
   };
 }
 

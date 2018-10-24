@@ -22,10 +22,18 @@ const sourceTarget = {
   drop(props, monitor, component) {
     if(!monitor.didDrop()){
       const comp = monitor.getItem().comp;
+      const isSubmodule = monitor.getItem().submodule;
       const customProps = omit(['stub', 'slots'], path(['editor','customProps', comp], component.store.getState()))
       const parentPath = component.props.parentchain;
 
-      if(props.replace){
+
+      if(isSubmodule){
+        if(props.replace){
+          component.store.dispatch(actionCreators.replaceSubmodule({path: parentPath, parentkey: last(parentPath), value: comp, customProps: customProps}))
+        }else{
+          component.store.dispatch(actionCreators.addSubmodule({path: parentPath, parentkey: component.props.parentkey, value: comp, customProps: customProps}))
+        }
+      }else if (props.replace){
         component.store.dispatch(actionCreators.replaceTreeNode({path: parentPath, parentkey: last(parentPath), value: comp, customProps: customProps}))
       }else{
         component.store.dispatch(actionCreators.addTreeNode({path: parentPath, parentkey: component.props.parentkey, value: comp, customProps: customProps}))

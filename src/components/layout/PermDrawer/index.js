@@ -103,8 +103,19 @@ const styles = theme => ({
 class PermDrawer extends React.Component {
   state = {
     open: true,
+    prevOpen: true,
     anchor: 'left',
   };
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.preview !== state.prevPreview) {
+      return {
+        prevPreview: props.preview,
+        open: !props.preview,
+      };
+    }
+    return null;
+  }
 
   handleDrawerOpen = () => {
     this.setState({ open: true });
@@ -158,29 +169,31 @@ class PermDrawer extends React.Component {
       after = drawer;
     }
 
+    const bar = (<AppBar
+      className={classNames(classes.appBar, {
+        [classes.appBarShift]: open,
+        [classes[`appBarShift-${anchor}`]]: open,
+      })}
+    >
+      <Toolbar disableGutters={!open}>
+        <IconButton
+          color="inherit"
+          aria-label="Open drawer"
+          onClick={this.handleDrawerOpen}
+          className={classNames(classes.menuButton, open && classes.hide)}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Typography variant="h6" color="inherit" noWrap>
+          {this.props.title && this.props.title}
+        </Typography>
+      </Toolbar>
+    </AppBar>)
+
     return (
       <div className={classes.root}>
         <div className={classes.appFrame}>
-          <AppBar
-            className={classNames(classes.appBar, {
-              [classes.appBarShift]: open,
-              [classes[`appBarShift-${anchor}`]]: open,
-            })}
-          >
-            <Toolbar disableGutters={!open}>
-              <IconButton
-                color="inherit"
-                aria-label="Open drawer"
-                onClick={this.handleDrawerOpen}
-                className={classNames(classes.menuButton, open && classes.hide)}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="h6" color="inherit" noWrap>
-                {this.props.title && this.props.title}
-              </Typography>
-            </Toolbar>
-          </AppBar>
+          {!this.props.preview  && bar}
           {before}
           <main
             className={classNames(classes.content, classes[`content-${anchor}`], {
@@ -188,7 +201,7 @@ class PermDrawer extends React.Component {
               [classes[`contentShift-${anchor}`]]: open,
             })}
           >
-            <div className={classes.drawerHeader} />
+            {!this.props.preview && <div className={classes.drawerHeader} />}
             {lookup('mainContent')}
           </main>
           {after}

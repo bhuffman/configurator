@@ -35,3 +35,36 @@ export function *watchDeleteNode() {
   yield takeEvery(C.DELETE_TREE_NODE, deleteNode);
 }
 
+function *makeSubmodule(action) {
+  const oldTree = yield select((state) => state.configJson.tree);
+
+  yield put({...action, type: C.MAKE_SUBMODULE_TO_STATE});
+  yield put({history: oldTree, type: C.APPEND_HISTORY});
+}
+
+export function *watchMakeSubmodule() {
+  yield takeEvery(C.MAKE_SUBMODULE, makeSubmodule);
+}
+
+function *replaceSubmodule(action) {
+  const oldTree = yield select((state) => state.configJson.tree);
+
+  yield put({...action, type: C.REPLACE_SUBMODULE_TO_STATE});
+  yield put({history: oldTree, type: C.APPEND_HISTORY});
+}
+
+export function *watchReplaceSubmodule() {
+  yield takeEvery(C.REPLACE_SUBMODULE, replaceSubmodule);
+}
+
+function *addSubmodule(action) {
+  const oldTree = yield select((state) => state.configJson.tree);
+
+  yield put({...action, type: C.ADD_SUBMODULE_TO_STATE});
+  yield put({history: oldTree, type: C.APPEND_HISTORY});
+}
+
+export function *watchAddSubmodule() {
+  yield takeEvery(C.ADD_SUBMODULE, addSubmodule);
+}
+

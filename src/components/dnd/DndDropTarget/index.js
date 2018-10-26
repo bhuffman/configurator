@@ -9,12 +9,11 @@ const styles = (vars) => ({
   DndDropTarget:{
     'width':'100%',
     'height':'inherit',
-    'box-shadow': 'inset 0px 0px 3px 2px rgb(211, 6, 50,.61)',
-    'box-shadow': '0px 0px 3px 2px rgba(211, 6, 50,0.61)',
+    'min-height': '10px',
+    'box-shadow': '0px 0px 1px 1px rgba(69, 135, 173, 0.61)',
   },
   isOver:{
-    'box-shadow': 'inset 0px 0px 3px 2px rgba(129, 45, 211,0.61)',
-    'box-shadow': '0px 0px 3px 2px rgba(129, 45, 211,0.61)',
+    'box-shadow': '0px 0px 1px 1px rgba(243, 6, 6, 0.61)',
   }
 });
 

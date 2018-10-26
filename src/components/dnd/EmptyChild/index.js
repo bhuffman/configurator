@@ -7,8 +7,9 @@ import DndDropTarget from 'components/dnd/DndDropTarget';
 
 const styles = theme => ({
   EmptyChild: {
-    display: 'flex',
+    display: 'inline-grid',
     width: '100%',
+    height: 'auto',
     'min-height': '25px',
     'min-width': '25px',
     opacity: '1',
@@ -18,6 +19,7 @@ const styles = theme => ({
     'background-image': "url('add.png')",
     'background-repeat': 'no-repeat',
     'background-position': 'center', 
+    'background-color': '#ddd',
     'background-size': '24px',
   },
   icon: {
@@ -33,8 +35,7 @@ class EmptyChild extends Component {
 
     if(preview){
       return (
-        <React.Fragment>
-        </React.Fragment>
+        null
       );
     }else{
       return (

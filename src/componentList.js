@@ -7,6 +7,7 @@ import DividerWrapper from 'components/layout/DividerWrapper';
 import FlexColumn from 'components/layout/FlexColumn';
 import FlexRow from 'components/layout/FlexRow';
 import FlexLayout1 from 'components/layout/FlexLayout1';
+import Header from 'components/layout/Header';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -18,6 +19,7 @@ import SimpleTabs from 'components/layout/SimpleTabs';
 import SpaceFiller from 'components/layout/SpaceFiller';
 import TileGrid from 'components/layout/TileGrid';
 import Typography from '@material-ui/core/Typography';
+import Toolbar from '@material-ui/core/Toolbar';
 
 //Features
 import AppBar from '@material-ui/core/AppBar';
@@ -34,7 +36,6 @@ import SimpleForm from 'components/features/SimpleForm';
 import SimpleList from 'components/features/SimpleList';
 import SimpleTable from 'components/features/SimpleTable';
 import Test from 'components/features/Test';
-import Toolbar from '@material-ui/core/Toolbar';
 
 //Data
 import MockChartData from 'components/data/MockChartData';
@@ -48,6 +49,7 @@ const Layout = {
   FlexColumn,
   FlexRow,
   FlexLayout1,
+  Header,
   List,
   ListItem,
   ListItemText,
@@ -59,6 +61,7 @@ const Layout = {
   SpaceFiller,
   TileGrid,
   Typography,
+  Toolbar,
 }
 
 const Features = {
@@ -76,7 +79,6 @@ const Features = {
   SimpleList,
   SimpleTable,
   Test,
-  Toolbar,
 }
 
 const Data = {

@@ -58,12 +58,16 @@ class ConfigRootDnd extends Component {
 
   _handleKeyDown = (event) => {
     switch( event.keyCode ) {
-        case 27: //Escape Key
-            this.props.rewindHistory()
-            break;
-        case 17: // Ctrl Key
-            this.props.togglePreview()
-            break;
+        case 90: // Z
+          if(event.ctrlKey && event.shiftKey){
+            this.props.forwardHistory();
+          }else if (event.ctrlKey){
+            this.props.rewindHistory();
+          }
+          break;
+        case 88: // X
+          event.ctrlKey && this.props.togglePreview();
+          break;
         default: 
             break;
     }

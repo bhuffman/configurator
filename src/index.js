@@ -3,7 +3,6 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import configureStore from './store/configureStore';
 import initialState from './initialState';
-import {ThemeProvider} from 'react-jss'
 import { BrowserRouter } from 'react-router-dom';
 import { DragDropContextProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';

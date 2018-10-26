@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { compose, values, mapObjIndexed, path, isNil, map, head, keys } from "ramda";
+import { compose, values, path, isNil, map, head, keys } from 'ramda';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import actionCreators from "globalActions";

@@ -1,8 +1,22 @@
-import {combineReducers} from 'redux';
-import {assocPath, intersperse, append, prepend, length, path, merge, dissocPath, isNil, last, isEmpty, tail, head, pipe, equals, slice, nth} from 'ramda';
+import { combineReducers } from 'redux';
+import {
+	append,
+	assocPath,
+	dissocPath,
+	head,
+	intersperse,
+	isEmpty,
+	length,
+	merge,
+	nth,
+	path,
+	pipe,
+	prepend,
+	slice,
+	tail,
+} from 'ramda';
 import initialState from './initialState';
 import * as C from './konstants';
-import SubModule from './components/dnd/SubModule';
 
 function configJson(state = initialState, action) {
   switch (action && action.type) {

@@ -13,7 +13,7 @@ const styles = theme => ({
 
 class SimpleChart extends Component {
   render() {
-    const {classes, children, style, chartType} = this.props;
+    const {classes, style, chartType} = this.props;
 
     var data = !isNil(this.props.data) ? {
           series: [

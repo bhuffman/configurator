@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import {compose, head, isEmpty, mapObjIndexed, values, isNil} from 'ramda';
+import { compose, head, isEmpty, mapObjIndexed, values, isNil } from 'ramda';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css'
 
@@ -12,7 +12,7 @@ const styles = theme => ({
 
 class SimpleTable extends Component {
     render() {
-        const {classes, data, columns} = this.props;
+        const { classes, data } = this.props;
 
         const autoHeader = !isEmpty(data) && !isNil(data) ?
           values(mapObjIndexed((col, key) => {

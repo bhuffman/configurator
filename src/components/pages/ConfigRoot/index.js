@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {compose, values, mapObjIndexed, repeat, flatten, zip, keys, map, length, head, last, unnest} from 'ramda';
+import { connect } from 'react-redux';
+import { compose, values, keys, head } from 'ramda';
 import actionCreators from 'globalActions';
 import Composer from 'components/Composer';
 
 class ConfigRoot extends Component {
   render() {
-    let {classes, configJson} = this.props;
+    let {configJson} = this.props;
 
     return (
       <div style={{height: '100vh'}}>
@@ -16,7 +16,7 @@ class ConfigRoot extends Component {
   }
 }
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   return {
     configJson: state.configJson,
   };

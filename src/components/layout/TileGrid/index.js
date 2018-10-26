@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import {compose, values, repeat, flatten, zip, tail, map, length, head, last, pluck} from 'ramda';
 import ReactGridLayout from 'react-grid-layout';
@@ -41,7 +40,7 @@ const styles =
 
 class TileGrid extends Component {
   render() {
-    const {classes, children} = this.props;
+    const {children} = this.props;
     
     const childrenWithProps = React.Children.map(children, child =>{
       return (<div key={child.key}>{child}</div>);

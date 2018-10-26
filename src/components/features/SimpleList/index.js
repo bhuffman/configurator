@@ -17,8 +17,6 @@ const styles =
 
 class SimpleList extends Component {
   render() {
-    const {classes, children, style} = this.props;
-
     return (<React.Fragment>
       <List>
         <ListItem>

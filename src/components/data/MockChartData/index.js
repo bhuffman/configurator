@@ -305,7 +305,7 @@ const mockData = [
 
 class MockChartData extends Component {
   render() {
-    const {classes, children, style} = this.props;
+    const {children} = this.props;
     
     let newChildren = React.Children.map(children, child =>
         React.cloneElement(child, {data: mockData})

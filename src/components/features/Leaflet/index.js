@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import {compose, values, map, head, pipe} from 'ramda';
+import { compose } from 'ramda';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 
 const styles = theme => ({
@@ -13,7 +13,7 @@ const styles = theme => ({
 
 class Leaflet extends Component {
   render() {
-    const {classes, children, style, mapPosition, popupText} = this.props;
+    const {classes, style, mapPosition, popupText} = this.props;
 
     const position = mapPosition ? mapPosition : [51.505, -0.09]
     const text = popupText ? popupText : "This is my marker text"

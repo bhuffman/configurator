@@ -13,7 +13,7 @@ const styles = theme => ({
 
 class JsonPreview extends Component {
   render() {
-    const {classes, children, style, preview} = this.props;
+    const {classes, style } = this.props;
 
     return (
       <div className={classes.JsonPreview} style={style}>

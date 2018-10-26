@@ -19,7 +19,7 @@ const styles =
 
 class SimpleForm extends Component {
   render() {
-    const {classes, children, style} = this.props;
+    const { classes } = this.props;
 
     return (<React.Fragment>
       <List>

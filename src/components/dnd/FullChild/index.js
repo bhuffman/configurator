@@ -17,7 +17,7 @@ const styles = theme => ({
     width: '100%',
     padding: '10px',
     'padding-top': '12px',
-    height: '100%'
+    height: '100%',
   },
   label: {
     position: 'absolute',
@@ -28,12 +28,12 @@ const styles = theme => ({
     opacity: '.65',
     cursor: 'crosshair',
     '&:hover': {
-      color: 'red'
+      color: 'red',
     },
   },
   button: {
-    width: '100%'
-  }
+    width: '100%',
+  },
 });
 
 class FullChild extends Component {

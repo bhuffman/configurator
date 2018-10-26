@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import {compose} from 'ramda';
 
 const styles = theme => ({
@@ -17,7 +16,7 @@ class SpaceFiller extends Component {
 
     return (
       <div className={classes.SpaceFiller} style={style}>
-        {this.props.children}
+        {children}
       </div>
     );
   }

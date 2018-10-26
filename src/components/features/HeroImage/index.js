@@ -13,10 +13,10 @@ const styles =
 
 class HeroImage extends Component {
   render() {
-    const {classes, children, style} = this.props;
+    const {classes } = this.props;
 
     return (<React.Fragment>
-        <div key={'img-1'} className={classes.HeroImage}><img className={classes.img} src="hero-green.jpeg"/></div>
+        <div key={'img-1'} className={classes.HeroImage}><img className={classes.img} alt='Hero' src="hero-green.jpeg"/></div>
     </React.Fragment>);
   }
 }

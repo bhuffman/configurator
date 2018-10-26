@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import {mapObjIndexed, values, dissoc} from 'ramda';
 
 const styles =
   theme => ({
@@ -12,8 +10,6 @@ const styles =
 
 class LoremIpsum extends Component {
   render() {
-    const {classes, children, style} = this.props;
-
     return <React.Fragment>
         <p>
           Lorem ipsum dolor amet tilde next level blue bottle coloring

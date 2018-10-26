@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import {map, omit, compose,  equals, T, filter, has, isNil, init, path, last} from 'ramda';
+import { omit, compose, path, last } from 'ramda';
 import {connect} from 'react-redux';
 import actionCreators from 'globalActions';
 import { DropTarget } from 'react-dnd';
@@ -25,7 +25,6 @@ const sourceTarget = {
       const customProps = omit(['stub', 'slots'], path(['editor','customProps', comp], component.store.getState()))
       const parentPath = component.props.parentchain;
 
-
       if(isSubmodule){
         if(props.replace){
           component.store.dispatch(actionCreators.replaceSubmodule({path: parentPath, parentkey: last(parentPath), value: comp, customProps: customProps}))
@@ -42,7 +41,6 @@ const sourceTarget = {
 
   hover(props, monitor, component) {
 
-
   }
 };
 
@@ -55,7 +53,7 @@ function collect(connect, monitor) {
 
 class DndDropTarget extends Component {
   render() {
-    let {classes, connectDropTarget,isOver} = this.props;
+    let {classes, connectDropTarget } = this.props;
     let hoverClass = this.props.isOver ? 'isOver' : '';
 
     return connectDropTarget(
@@ -71,7 +69,6 @@ function mapStateToProps(state) {
     customProps: state.editor.customProps
   };
 }
-
 
 export default compose(
   DropTarget(["NEW_COMPONENT"], sourceTarget, collect),

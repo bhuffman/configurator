@@ -31,7 +31,7 @@ const styles = theme => ({
 
 class EmptyChild extends Component {
   render() {
-    const {classes, children, style, preview} = this.props;
+    const {classes, style, preview} = this.props;
 
     if(preview){
       return (

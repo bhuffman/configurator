@@ -3,7 +3,6 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { compose } from 'ramda';
 import actionCreators from 'globalActions';
-import DndDragSource from 'components/dnd/DndDragSource';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -62,7 +61,7 @@ class SubModule extends Component {
     if(preview){
       return (
         <React.Fragment>
-          {this.props.children}
+          {children}
         </React.Fragment>
       );
     }else{

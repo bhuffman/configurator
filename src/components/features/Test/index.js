@@ -8,14 +8,14 @@ const styles =
     Test: {
 
     },
-});
+  });
 
 class Test extends Component {
   render() {
-    const {classes, children, style} = this.props;
+    const { classes, style } = this.props;
     const kids = values(mapObjIndexed((val, key) => {
-        return <div key={key}>{key} : {JSON.stringify(val)}</div>
-    },dissoc('children',this.props)))
+      return <div key={key}>{key} : {JSON.stringify(val)}</div>
+    }, dissoc('children', this.props)))
 
     return (
       <Grid className={classes.Test} style={style}>

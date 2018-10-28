@@ -1,15 +1,23 @@
-import {map, values, split, head, tail, fromPairs} from 'ramda';
-
+import {map, values, split, head, tail, fromPairs, pipe, join, concat, toLower, converge, toUpper } from 'ramda';
 const C = require('konstants');
 
-const collection = values(map((c) => {
-    const functionName = map((chunk) => {
-        return head(chunk.toLowerCase()).toUpperCase() + tail(chunk.toLowerCase())
-    },split("_", c)).join('')
+const collection = map((c) => {
+  const functionName = pipe(
+    split('_'),
+    map(
+      converge(
+        concat, [pipe(head, toUpper), pipe(toLower, tail)]
+      )
+    ),
+    join(''),
+    converge(
+      concat, [pipe(head, toLower), tail]
+    ),
+  )(c)
 
-    const initName = head(functionName).toLowerCase() + tail(functionName)
+  return [functionName, (action) => { return { ...action, type: c } }];
+}, C);
 
-    return [initName, (action) => { return {...action, type: c}}];
-}, C));
+export default fromPairs(values(collection));
 
-export default fromPairs(collection);
+

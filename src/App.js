@@ -18,7 +18,7 @@ class App extends Component {
         <CssBaseline />
         <Switch>
           <Route path='/editor' component={ConfigRootDnd} />
-          <Route path='/' component={ConfigRoot} />
+          <Route path='/' component={ConfigRootDnd} />
         </Switch>
       </div>
     );

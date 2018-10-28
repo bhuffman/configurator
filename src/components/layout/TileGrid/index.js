@@ -51,7 +51,7 @@ class TileGrid extends Component {
       <ReactGridLayout 
           layout={buildLayout('default', childrenWithProps)} 
           cols={3} 
-          rowHeight={367} 
+          rowHeight={470} 
           width={1200} 
           draggableCancel="input,textarea" 
           margin={[18, 14]} 

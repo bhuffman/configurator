@@ -37,6 +37,9 @@ const styles = theme => ({
     'text-decoration': 'none',
     'font-size': '10px',
     opacity: '0.5'
+  },
+  listItem: {
+    height: '30px',
   }
 });
 
@@ -44,8 +47,17 @@ const styles = theme => ({
 class ConfigRootDnd extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      expanded: null,
+    };
     this._handleKeyDown = this._handleKeyDown.bind(this);
   }
+
+  handleChange = panel => (event, expanded) => {
+    this.setState({
+      expanded: expanded ? panel : false,
+    });
+  };
 
   componentDidMount() {
     document.addEventListener("keydown", this._handleKeyDown);
@@ -75,6 +87,7 @@ class ConfigRootDnd extends Component {
 
   render() {
     let { classes, configJson, features, layouts, data , subModules, preview} = this.props;
+    const { expanded } = this.state;
 
     const featureList =
       !isNil(features) &&
@@ -83,7 +96,7 @@ class ConfigRootDnd extends Component {
           return (
             <React.Fragment key={feature}>
               <DndDragSource comp={feature}>
-                <ListItem>
+                <ListItem className={classes.listItem}>
                   <ListItemText>{feature}</ListItemText>
                 </ListItem>
                 <Divider />
@@ -100,7 +113,7 @@ class ConfigRootDnd extends Component {
           return (
             <React.Fragment key={layout}>
               <DndDragSource comp={layout}>
-                <ListItem>
+                <ListItem className={classes.listItem}>
                   <ListItemText>{layout}</ListItemText>
                 </ListItem>
                 <Divider />
@@ -117,7 +130,7 @@ class ConfigRootDnd extends Component {
           return (
             <React.Fragment key={datum}>
               <DndDragSource comp={datum}>
-                <ListItem>
+                <ListItem className={classes.listItem}>
                   <ListItemText>{datum}</ListItemText>
                 </ListItem>
                 <Divider />
@@ -135,7 +148,7 @@ class ConfigRootDnd extends Component {
             <React.Fragment key={subModule}>
               <DndDragSource comp={subModule} submodule>
                 <SubModule comp={subModule}>
-                  <ListItem>
+                  <ListItem className={classes.listItem}>
                     <div>{subModule}</div>
                   </ListItem>
                   <Divider />
@@ -154,7 +167,7 @@ class ConfigRootDnd extends Component {
         </div>
         <PermDrawer preview={preview}>
           <div key="drawerContent">
-            <ExpansionPanel>
+            <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')}>
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography>Data</Typography>
               </ExpansionPanelSummary>
@@ -162,7 +175,7 @@ class ConfigRootDnd extends Component {
                 <List style={{ padding: 0 }}><Divider />{dataList}</List>
               </ExpansionPanelDetails>
             </ExpansionPanel>
-            <ExpansionPanel>
+            <ExpansionPanel expanded={expanded === 'panel2'} onChange={this.handleChange('panel2')}>
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography>Layout</Typography>
               </ExpansionPanelSummary>
@@ -170,7 +183,7 @@ class ConfigRootDnd extends Component {
                 <List style={{ padding: 0 }}><Divider />{layoutList}</List>
               </ExpansionPanelDetails>
             </ExpansionPanel>
-            <ExpansionPanel>
+            <ExpansionPanel expanded={expanded === 'panel3'} onChange={this.handleChange('panel3')}>
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography>Features</Typography>
               </ExpansionPanelSummary>
@@ -178,7 +191,7 @@ class ConfigRootDnd extends Component {
                 <List style={{ padding: 0 }}><Divider />{featureList}</List>
               </ExpansionPanelDetails>
             </ExpansionPanel>
-            <ExpansionPanel>
+            <ExpansionPanel expanded={expanded === 'panel4'} onChange={this.handleChange('panel4')}>
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography>Sub Modules</Typography>
               </ExpansionPanelSummary>

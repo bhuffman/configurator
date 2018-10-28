@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Centered from 'components/layout/Centered';
 import DividerWrapper from 'components/layout/DividerWrapper';
 import FlexColumn from 'components/layout/FlexColumn';
+import FadeWrapper from 'components/layout/FadeWrapper';
 import FlexRow from 'components/layout/FlexRow';
 import FlexLayout1 from 'components/layout/FlexLayout1';
 import Header from 'components/layout/Header';
@@ -17,6 +18,7 @@ import Paper from '@material-ui/core/Paper';
 import PermDrawer from 'components/layout/PermDrawer';
 import SimpleTabs from 'components/layout/SimpleTabs';
 import SpaceFiller from 'components/layout/SpaceFiller';
+import Stepper from 'components/layout/Stepper';
 import TileGrid from 'components/layout/TileGrid';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -25,6 +27,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 import Avatar from '@material-ui/core/Avatar';
 import Drawer from '@material-ui/core/Drawer';
+import DemoCard from 'components/features/DemoCard';
 import HeroImage from 'components/features/HeroImage';
 import IconButton from '@material-ui/core/IconButton';
 import Leaflet from 'components/features/Leaflet';
@@ -46,6 +49,7 @@ const Layout = {
   CardContent,
   Centered,
   DividerWrapper,
+  FadeWrapper,
   FlexColumn,
   FlexRow,
   FlexLayout1,
@@ -59,6 +63,7 @@ const Layout = {
   PermDrawer,
   SimpleTabs,
   SpaceFiller,
+  Stepper,
   TileGrid,
   Typography,
   Toolbar,
@@ -68,6 +73,7 @@ const Features = {
   AppBar,
   Avatar,
   Drawer,
+  DemoCard,
   HeroImage,
   IconButton,
   Leaflet,

@@ -4,32 +4,35 @@ Note: This is a tech demo only.
 
 The first thing you do is define your JSON tree structure (currently done in initialstate with Redux). The tree looks like this:
 
-'''
+```
 tree:{
-      "1": {
-        "injectProps": {
-          "title": "drop drawer"
-        },
-        "type": "PermDrawer",
+    "1": {
+    "injectProps": {
+        "title": "drop drawer"
+    },
+    "type": "PermDrawer",
+    "children": {
+        "mainContent": {
+        "injectProps": {},
+        "type": "SimpleTabs",
+        "sort": 1001,
         "children": {
-          "mainContent": {
+            "tabThree": {
             "injectProps": {},
-            "type": "SimpleTabs",
-            "sort": 1001,
-            "children": {
-              "tabThree": {
-                "injectProps": {},
-                "type": "SimpleForm",
-                "sort": 1009
-              },
-              "tabTwo": {
-                "injectProps": {
-                  "style": {
-                    "minHeight": "300px",
-                    "height": "100%"
-                  }
-                },
-'''
+            "type": "SimpleForm",
+            "sort": 1009
+            },
+            "tabTwo": {
+            "injectProps": {
+                "style": {
+                "minHeight": "300px",
+                "height": "100%"
+                }
+            },
+        }
+    }
+}
+```
 
 Then, the magic is done in the Composer component:
 

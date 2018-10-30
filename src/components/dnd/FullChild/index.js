@@ -20,10 +20,9 @@ const styles = theme => ({
     height: '100%',
   },
   label: {
-    position: 'absolute',
     height: '12px',
     'font-size': '10px',
-    'margin-top': '-14px',
+    'margin-top': '-13px',
     'margin-left': '-2px',
     opacity: '.65',
     cursor: 'crosshair',

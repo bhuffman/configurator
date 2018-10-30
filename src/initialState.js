@@ -3,12 +3,78 @@ export default {
     globalId: 1000,
     subModuleId: 1,
     undoIndex: 0,
-    tree: {
-      1:{
-        type: 'FlexColumn',
-        children: {
-          2: {type: 'Paper', sort: 3},
-          3: {type: 'DividerWrapper', sort: 2},
+    tree:{
+      "1": {
+        "injectProps": {
+          "title": "drop drawer"
+        },
+        "type": "PermDrawer",
+        "children": {
+          "mainContent": {
+            "injectProps": {},
+            "type": "SimpleTabs",
+            "sort": 1001,
+            "children": {
+              "tabThree": {
+                "injectProps": {},
+                "type": "SimpleForm",
+                "sort": 1009
+              },
+              "tabTwo": {
+                "injectProps": {
+                  "style": {
+                    "minHeight": "300px",
+                    "height": "100%"
+                  }
+                },
+                "type": "Paper",
+                "sort": 1004,
+                "children": {
+                  "uuid-6570-1872": {
+                    "injectProps": {
+                      "custom": "Jimmy"
+                    },
+                    "type": "TileGrid",
+                    "sort": 1005,
+                    "children": {
+                      "uuid-31fc-2820": {
+                        "injectProps": {},
+                        "type": "PlaceholderImages",
+                        "sort": 1008
+                      },
+                      "uuid-a676-4c53": {
+                        "injectProps": {},
+                        "type": "HeroImage",
+                        "sort": 1007
+                      },
+                      "uuid-7cb9-0805": {
+                        "injectProps": {},
+                        "type": "DemoCard",
+                        "sort": 1006
+                      }
+                    }
+                  }
+                }
+              },
+              "tabOne": {
+                "injectProps": {},
+                "type": "MockTableData",
+                "sort": 1002,
+                "children": {
+                  "uuid-9087-a5f4": {
+                    "injectProps": {},
+                    "type": "SimpleTable",
+                    "sort": 1003
+                  }
+                }
+              }
+            }
+          },
+          "drawerContent": {
+            "injectProps": {},
+            "type": "SimpleList",
+            "sort": 1000
+          }
         }
       }
     },

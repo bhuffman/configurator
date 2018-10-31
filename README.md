@@ -2,7 +2,7 @@
 
 Note: This is a tech demo only.
 
-[![Configurator Demo](/public/configurator_demo.png)](https://youtu.be/zYqgn1E4FyM "Demo!")
+[![Configurator Demo](/public/configurator_demo.png)](https://youtu.be/rZUmHpkkl2g "Demo!")
 
 The first thing you do is define your JSON tree structure (currently done in initialstate with Redux). The tree looks like this:
 
